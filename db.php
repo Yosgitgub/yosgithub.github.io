@@ -1,8 +1,8 @@
 <?php
-$host = 'localhost';
-$db   = 'siga_milano';
-$user = 'root';
-$pass = '32482716*yY'; // Default XAMPP password is empty
+$user = 'ur6fdgktxs9wgvsu';
+$host = 'brtlxysmnhzldqaolnvy-mysql.services.clever-cloud.com';
+$db = 'brtlxysmnhzldqaolnvy';
+$pass = 'nrOfFuUc8I4r0gEAzVeA';
 $charset = 'utf8mb4';
 
 $dsn = "mysql:host=$host;dbname=$db;charset=$charset";

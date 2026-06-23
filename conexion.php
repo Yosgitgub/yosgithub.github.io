@@ -1,8 +1,8 @@
 <?php
-$user = 'root';
-$host = 'localhost';
-$db = 'siga_milano';
-$pass = '31896993';
+$user = 'ur6fdgktxs9wgvsu';
+$host = 'brtlxysmnhzldqaolnvy-mysql.services.clever-cloud.com';
+$db = 'brtlxysmnhzldqaolnvy';
+$pass = 'nrOfFuUc8I4r0gEAzVeA';
 $charset = 'utf8mb4';
 $options = [
     PDO::ATTR_ERRMODE            => PDO::ERRMODE_EXCEPTION, 
