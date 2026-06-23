@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Milano - Inicio de Sesión</title>
+    <meta name="description" content="Inicia sesión o regístrate en Restaurante Milano.">
+    <link rel="icon" type="image/png" href="logo%20milano.png">
+    <link rel="stylesheet" href="style.css?v=3">
+
+</head>
+<body>
+    <div class="waves">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+            <path fill="#49beaa" fill-opacity="0.3" d="M0,160L48,154.7C96,149,192,139,288,149.3C384,160,480,192,576,202.7C672,213,768,203,864,176C960,149,1056,107,1152,96C1248,85,1344,107,1392,117.3L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+        </svg>
+    </div>
+
+    <!-- Barra Superior con el nombre del restaurante -->
+    <div class="top-bar" style="display: flex; justify-content: space-between; align-items: center; padding: 15px 30px;">
+        <div style="display: flex; align-items: center; gap: 10px;">
+            <span class="top-bar-lobster">🦞</span>
+            <div class="top-bar-text">
+                <span>Marisquería y Restaurante</span>
+                <strong>El Milano</strong>
+            </div>
+        </div>
+        <a href="index.html" class="btn-back-home" style="background: rgba(255,255,255,0.2); color: white; padding: 8px 15px; border-radius: 20px; text-decoration: none; font-weight: bold; font-family: 'Inter', sans-serif; transition: 0.3s; display: flex; align-items: center; gap: 8px;" onmouseover="this.style.background='rgba(255,255,255,0.4)'" onmouseout="this.style.background='rgba(255,255,255,0.2)'">
+            <span style="font-size: 1.2rem;">🏠</span> Volver al Inicio
+        </a>
+    </div>
+
+    <div class="main-layout">
+        <!-- Lado izquierdo: Login / Registro -->
+        <div class="auth-side">
+            <div class="auth-wrapper">
+                <div class="auth-box">
+                    <div class="brand-header">
+                        <img src="./imagenes/logo milano.png" alt="Logo Milano" class="brand-img">
+                    </div>
+
+                    <div class="toggle-container">
+                        <button type="button" class="toggle-btn active" id="btn-login" onclick="showLogin()">Iniciar Sesión</button>
+                        <button type="button" class="toggle-btn" id="btn-register" onclick="showRegister()">Registrarse</button>
+                    </div>
+
+                    <!-- Formulario de Login -->
+                    <form id="login-form" class="auth-form active">
+                        <h2>Restaurante Milano</h2>
+                        <p class="subtitle">Con mas de 82 años de experiencia en nuestra ciudad 🌊</p>
+                        
+                        <div class="input-group">
+                            <label for="login-username">Nombre de Usuario</label>
+                            <input type="text" id="login-username" placeholder="Ingresa tu usuario" required>
+                        </div>
+                        
+                        <div class="input-group">
+                            <label for="login-password">Contraseña</label>
+                            <input type="password" id="login-password" placeholder="Ingresa tu contraseña" required>
+                        </div>
+
+                        <button type="submit" class="submit-btn">Ingresar</button>
+                    </form>
+
+                    <!-- Formulario de Registro -->
+                    <form id="register-form" class="auth-form">
+                        <h2>Únete a la familia</h2>
+                        <p class="subtitle">Disfruta de nuestros mariscos frescos 🍤</p>
+
+                        <div id="client-data-group">
+                            <div class="input-group">
+                                <label for="reg-cedula">Cédula</label>
+                                <input type="text" id="reg-cedula" placeholder="Ingresa tu cédula" required>
+                            </div>
+
+                            <div class="input-group" style="display: flex; gap: 10px; margin-bottom: 20px;">
+                                <div style="flex: 1;">
+                                    <label for="reg-nombre">Nombre</label>
+                                    <input type="text" id="reg-nombre" placeholder="Tu nombre" required>
+                                </div>
+                                <div style="flex: 1;">
+                                    <label for="reg-apellido">Apellido</label>
+                                    <input type="text" id="reg-apellido" placeholder="Tu apellido" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="reg-username">Nombre de Usuario</label>
+                            <input type="text" id="reg-username" placeholder="Elige un usuario" required>
+                        </div>
+
+                        <div class="input-group">
+                            <label for="reg-password">Contraseña</label>
+                            <input type="password" id="reg-password" placeholder="Crea una contraseña" required>
+                        </div>
+
+                        <div class="input-group">
+                            <label>Rol</label>
+                            <div class="role-selector">
+                                <label class="role-option">
+                                    <input type="radio" name="role" value="cliente" checked onchange="toggleCarnet()">
+                                    <span class="role-card">
+                                        <i>🍽️</i>
+                                        <span>Cliente</span>
+                                    </span>
+                                </label>
+                                <label class="role-option">
+                                    <input type="radio" name="role" value="restaurante" onchange="toggleCarnet()">
+                                    <span class="role-card">
+                                        <i>👨‍🍳</i>
+                                        <span>Restaurante</span>
+                                    </span>
+                                </label>
+                            </div>
+                        </div>
+
+                        <button type="submit" class="submit-btn">Registrarse</button>
+                    </form>
+                </div>
+
+                <!-- Panel lateral de Empleado -->
+                <div class="side-panel" id="restaurant-panel" style="display: none;">
+                    <h3>Datos del Empleado</h3>
+                    <div class="input-group">
+                        <label for="reg-carnet">Número de Carnet</label>
+                        <input type="text" id="reg-carnet" placeholder="Ingresa tu carnet">
+                    </div>
+
+                    <div class="input-group">
+                        <label>Cargo</label>
+                        <div class="role-selector-radio" style="flex-direction: column; gap: 15px;">
+                            <label class="radio-option">
+                                <input type="radio" name="cargo" value="Chef">
+                                <span class="radio-circle"></span>
+                                Chef
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="cargo" value="Mesero">
+                                <span class="radio-circle"></span>
+                                Mesero
+                            </label>
+                            <label class="radio-option">
+                                <input type="radio" name="cargo" value="Administrador">
+                                <span class="radio-circle"></span>
+                                Administrador
+                            </label>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Lado derecho: Carrusel de imágenes -->
+        <div class="carousel-side">
+            <div class="carousel-container">
+                <div class="carousel-track">
+                    <img src="./imagenes/comida1.jpg" alt="Plato 1" class="carousel-img active">
+                    <img src="./imagenes/comida2.jpg" alt="Plato 2" class="carousel-img">
+                    <img src="./imagenes/comida3.jpg" alt="Plato 3" class="carousel-img">
+                    <img src="./imagenes/comida4.jpg" alt="Plato 4" class="carousel-img">
+                    <img src="./imagenes/comida5.jpg" alt="Plato 5" class="carousel-img">
+                </div>
+                <div class="carousel-dots">
+                    <span class="dot active" onclick="goToSlide(0)"></span>
+                    <span class="dot" onclick="goToSlide(1)"></span>
+                    <span class="dot" onclick="goToSlide(2)"></span>
+                    <span class="dot" onclick="goToSlide(3)"></span>
+                    <span class="dot" onclick="goToSlide(4)"></span>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js?v=3"></script>
+</body>
+</html>

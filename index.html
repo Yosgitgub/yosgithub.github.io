@@ -1,0 +1,673 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurante Milano - Marisquería desde 1987</title>
+    <meta name="description" content="Restaurante Milano, marisquería con más de 82 años de tradición culinaria. Reserva tu mesa y vive una experiencia gastronómica inolvidable.">
+    <link rel="icon" type="image/png" href="imagenes/logo%20milano.png">
+    <link rel="stylesheet" href="style.css?v=4">
+    <style>
+        /* ===========================
+           LANDING PAGE STYLES
+           =========================== */
+        body.landing-body {
+            display: block;
+            overflow-x: hidden;
+        }
+
+        /* NAVBAR */
+        .landing-nav {
+            position: fixed;
+            top: 0; left: 0; right: 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 40px;
+            background: rgba(0, 40, 60, 0.85);
+            backdrop-filter: blur(15px);
+            -webkit-backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(73, 190, 170, 0.3);
+            z-index: 100;
+            transition: all 0.3s ease;
+        }
+        .landing-nav.scrolled {
+            background: rgba(0, 40, 60, 0.97);
+            padding: 10px 40px;
+            box-shadow: 0 5px 25px rgba(0,0,0,0.3);
+        }
+        .nav-brand {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        .nav-brand img {
+            height: 55px;
+            filter: drop-shadow(0 2px 4px rgba(0,0,0,0.3));
+            transition: height 0.3s ease;
+        }
+        .landing-nav.scrolled .nav-brand img {
+            height: 42px;
+        }
+        .nav-brand-text {
+            display: flex;
+            flex-direction: column;
+        }
+        .nav-brand-text small {
+            color: var(--cream);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            opacity: 0.8;
+        }
+        .nav-brand-text strong {
+            color: var(--sand);
+            font-size: 1.4rem;
+        }
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+        .nav-links a {
+            color: var(--cream);
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 0.95rem;
+            transition: color 0.3s;
+            position: relative;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--sand);
+            transition: width 0.3s ease;
+        }
+        .nav-links a:hover { color: var(--sand); }
+        .nav-links a:hover::after { width: 100%; }
+        .nav-btn {
+            background: linear-gradient(135deg, var(--turquoise), var(--ocean));
+            color: white !important;
+            padding: 10px 24px;
+            border-radius: 25px;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(73, 190, 170, 0.4);
+        }
+        .nav-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(73, 190, 170, 0.6);
+        }
+        .nav-btn::after { display: none !important; }
+
+        /* HERO SECTION */
+        .hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+        }
+        .hero-bg {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            z-index: 0;
+        }
+        .hero-bg img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            filter: brightness(0.35);
+        }
+        .hero-overlay {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: linear-gradient(180deg, rgba(0,60,76,0.4) 0%, rgba(0,40,60,0.8) 100%);
+            z-index: 1;
+        }
+        .hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding: 20px;
+            animation: heroFadeIn 1.2s ease forwards;
+        }
+        @keyframes heroFadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        .hero-logo {
+            width: 220px;
+            margin: 0 auto 10px auto;
+            display: block;
+            filter: drop-shadow(0 10px 25px rgba(0,0,0,0.5));
+            animation: float 6s ease-in-out infinite;
+        }
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-12px); }
+        }
+        .hero-content h1 {
+            font-size: 3.5rem;
+            color: var(--cream);
+            margin-bottom: 10px;
+            text-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            letter-spacing: 2px;
+        }
+        .hero-content .hero-sub {
+            font-size: 1.2rem;
+            color: var(--sand);
+            margin-bottom: 8px;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-weight: 400;
+        }
+        .hero-content .hero-tagline {
+            font-size: 1.05rem;
+            color: rgba(253, 240, 205, 0.75);
+            margin-bottom: 40px;
+            max-width: 550px;
+            margin-left: auto;
+            margin-right: auto;
+            line-height: 1.6;
+        }
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .hero-btn {
+            padding: 16px 40px;
+            border-radius: 50px;
+            font-weight: 700;
+            font-size: 1.05rem;
+            text-decoration: none;
+            transition: all 0.3s ease;
+            font-family: 'PlayfairDisplay', serif;
+            letter-spacing: 0.5px;
+            cursor: pointer;
+            border: none;
+        }
+        .hero-btn.primary {
+            background: linear-gradient(135deg, var(--sand), #E2A74F);
+            color: #3A2400;
+            box-shadow: 0 8px 25px rgba(247, 201, 132, 0.4);
+        }
+        .hero-btn.primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 12px 35px rgba(247, 201, 132, 0.6);
+        }
+        .hero-btn.secondary {
+            background: transparent;
+            color: var(--cream);
+            border: 2px solid rgba(253, 240, 205, 0.5);
+        }
+        .hero-btn.secondary:hover {
+            background: rgba(253, 240, 205, 0.15);
+            border-color: var(--cream);
+            transform: translateY(-3px);
+        }
+
+        /* SECTION COMMON */
+        .landing-section {
+            padding: 80px 40px;
+            position: relative;
+            z-index: 10;
+        }
+        .section-title {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+        .section-title h2 {
+            font-size: 2.4rem;
+            color: var(--cream);
+            margin-bottom: 10px;
+        }
+        .section-title p {
+            color: rgba(253, 240, 205, 0.7);
+            font-size: 1.05rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .section-divider {
+            width: 60px;
+            height: 3px;
+            background: var(--sand);
+            margin: 15px auto 0 auto;
+            border-radius: 2px;
+        }
+
+        /* ABOUT SECTION */
+        .about-grid {
+            display: flex;
+            gap: 40px;
+            max-width: 1100px;
+            margin: 0 auto;
+            align-items: center;
+        }
+        .about-image {
+            flex: 1;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        }
+        .about-image img {
+            width: 100%;
+            height: 400px;
+            object-fit: cover;
+            display: block;
+            transition: transform 0.6s ease;
+        }
+        .about-image:hover img {
+            transform: scale(1.05);
+        }
+        .about-text {
+            flex: 1;
+        }
+        .about-text h3 {
+            font-size: 1.8rem;
+            color: var(--sand);
+            margin-bottom: 15px;
+        }
+        .about-text p {
+            color: rgba(253, 240, 205, 0.8);
+            line-height: 1.8;
+            font-size: 1.05rem;
+            margin-bottom: 15px;
+        }
+        .about-stats {
+            display: flex;
+            gap: 30px;
+            margin-top: 25px;
+        }
+        .stat {
+            text-align: center;
+        }
+        .stat-num {
+            font-size: 2.2rem;
+            font-weight: 700;
+            color: var(--sand);
+            display: block;
+        }
+        .stat-label {
+            color: rgba(253, 240, 205, 0.6);
+            font-size: 0.85rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* GALLERY */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 20px;
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+        .gallery-item {
+            border-radius: 16px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            cursor: pointer;
+            aspect-ratio: 4/3;
+        }
+        .gallery-item img {
+            width: 100%; height: 100%;
+            object-fit: cover;
+            transition: transform 0.5s ease;
+        }
+        .gallery-item:hover img {
+            transform: scale(1.1);
+        }
+        .gallery-item .gallery-label {
+            position: absolute;
+            bottom: 0; left: 0; right: 0;
+            padding: 20px 15px 15px;
+            background: linear-gradient(transparent, rgba(0,0,0,0.7));
+            color: white;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        /* CONTACT */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+        .contact-card {
+            background: rgba(253, 240, 205, 0.1);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(253, 240, 205, 0.15);
+            border-radius: 20px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+        .contact-card:hover {
+            transform: translateY(-5px);
+            background: rgba(253, 240, 205, 0.15);
+            box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+        }
+        .contact-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+        .contact-card h4 {
+            color: var(--sand);
+            font-size: 1.1rem;
+            margin-bottom: 8px;
+        }
+        .contact-card p {
+            color: rgba(253, 240, 205, 0.7);
+            font-size: 0.95rem;
+            line-height: 1.5;
+        }
+
+        /* FOOTER */
+        .landing-footer {
+            background: rgba(0, 20, 30, 0.8);
+            border-top: 1px solid rgba(73, 190, 170, 0.2);
+            padding: 30px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 15px;
+            z-index: 10;
+            position: relative;
+        }
+        .footer-brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .footer-brand img {
+            height: 40px;
+        }
+        .footer-brand span {
+            color: var(--sand);
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+        .footer-copy {
+            color: rgba(253, 240, 205, 0.5);
+            font-size: 0.85rem;
+        }
+
+        /* SCROLL ANIMATIONS */
+        .fade-up {
+            opacity: 0;
+            transform: translateY(40px);
+            transition: all 0.8s ease;
+        }
+        .fade-up.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* MOBILE NAV */
+        .nav-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--cream);
+            font-size: 1.8rem;
+            cursor: pointer;
+        }
+
+        /* RESPONSIVE */
+        @media (max-width: 768px) {
+            .landing-nav { padding: 12px 20px; }
+            .nav-links { 
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0; right: 0;
+                background: rgba(0, 40, 60, 0.97);
+                flex-direction: column;
+                padding: 20px;
+                gap: 15px;
+                border-bottom: 1px solid rgba(73,190,170,0.3);
+            }
+            .nav-links.open { display: flex; }
+            .nav-toggle { display: block; }
+            .hero-content h1 { font-size: 2.2rem; }
+            .hero-content .hero-sub { font-size: 0.9rem; letter-spacing: 2px; }
+            .hero-logo { width: 150px; }
+            .about-grid { flex-direction: column; }
+            .about-image img { height: 280px; }
+            .hero-btn { padding: 14px 30px; font-size: 0.95rem; }
+            .section-title h2 { font-size: 1.8rem; }
+            .landing-section { padding: 50px 20px; }
+            .landing-footer { flex-direction: column; text-align: center; }
+        }
+    </style>
+</head>
+<body class="landing-body">
+
+    <!-- NAVBAR -->
+    <nav class="landing-nav" id="navbar">
+        <div class="nav-brand">
+            <img src="imagenes/logo%20milano.png" alt="Logo Milano">
+            <div class="nav-brand-text">
+                <small>Marisquería</small>
+                <strong>Milano</strong>
+            </div>
+        </div>
+        <button class="nav-toggle" onclick="document.querySelector('.nav-links').classList.toggle('open')">☰</button>
+        <div class="nav-links">
+            <a href="#inicio">Inicio</a>
+            <a href="#nosotros">Nosotros</a>
+            <a href="#galeria">Galería</a>
+            <a href="#contacto">Contacto</a>
+            <a href="login.html" class="nav-btn">Iniciar Sesión</a>
+        </div>
+    </nav>
+
+    <!-- HERO -->
+    <section class="hero" id="inicio">
+        <div class="hero-bg">
+            <img src="imagenes/salon1.jpg" alt="Restaurante Milano Interior">
+        </div>
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <img src="imagenes/logo%20milano.png" alt="Logo Milano" class="hero-logo">
+            <p class="hero-sub">Marisquería desde 1987</p>
+            <h1>Restaurante Milano</h1>
+            <p class="hero-tagline">
+                Donde la tradición del mar se transforma en arte culinario. 
+                Más de 82 años deleitando paladares con los sabores más frescos del océano.
+            </p>
+            <div class="hero-buttons">
+                <a href="login.html" class="hero-btn primary">Reservar Mesa</a>
+                <a href="#nosotros" class="hero-btn secondary">Conocer Más</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- NOSOTROS -->
+    <section class="landing-section" id="nosotros">
+        <div class="section-title fade-up">
+            <h2>Nuestra Historia</h2>
+            <p>Más que un restaurante, somos una tradición familiar que perdura a través de generaciones.</p>
+            <div class="section-divider"></div>
+        </div>
+        <div class="about-grid fade-up">
+            <div class="about-image">
+                <img src="imagenes/comida2.jpg" alt="Platillos Milano">
+            </div>
+            <div class="about-text">
+                <h3>Tradición & Excelencia</h3>
+                <p>
+                    Desde nuestros humildes inicios en 1987, Restaurante Milano se ha convertido en un ícono de la 
+                    gastronomía marina. Cada platillo es preparado con los ingredientes más frescos del día, 
+                    siguiendo recetas que han sido perfeccionadas por décadas.
+                </p>
+                <p>
+                    Nuestro compromiso con la calidad y el servicio nos ha posicionado como el destino predilecto 
+                    para quienes buscan una experiencia culinaria única, ya sea en una cena íntima en nuestra 
+                    área VIP o en una celebración especial en nuestra terraza de eventos.
+                </p>
+                <div class="about-stats">
+                    <div class="stat">
+                        <span class="stat-num">82+</span>
+                        <span class="stat-label">Años de Historia</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-num">50+</span>
+                        <span class="stat-label">Platillos</span>
+                    </div>
+                    <div class="stat">
+                        <span class="stat-num">3</span>
+                        <span class="stat-label">Zonas Exclusivas</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- GALERÍA -->
+    <section class="landing-section" id="galeria" style="background: rgba(0,0,0,0.15);">
+        <div class="section-title fade-up">
+            <h2>Nuestros Espacios</h2>
+            <p>Descubre los ambientes que hemos preparado para cada ocasión especial.</p>
+            <div class="section-divider"></div>
+        </div>
+        <div class="gallery-grid fade-up">
+            <div class="gallery-item">
+                <img src="imagenes/salon1.jpg" alt="Salón Principal">
+                <div class="gallery-label">Salón Principal</div>
+            </div>
+            <div class="gallery-item">
+                <img src="imagenes/salon2.jpg" alt="Área VIP">
+                <div class="gallery-label">Área VIP</div>
+            </div>
+            <div class="gallery-item">
+                <img src="imagenes/salon3.jpg" alt="Eventos Especiales">
+                <div class="gallery-label">Eventos Especiales</div>
+            </div>
+            <div class="gallery-item">
+                <img src="imagenes/comida1.jpg" alt="Mariscos Frescos">
+                <div class="gallery-label">Mariscos Frescos</div>
+            </div>
+            <div class="gallery-item">
+                <img src="imagenes/comida3.jpg" alt="Platos de la Casa">
+                <div class="gallery-label">Platos de la Casa</div>
+            </div>
+            <div class="gallery-item">
+                <img src="imagenes/comida4.jpg" alt="Coctelería">
+                <div class="gallery-label">Bebidas & Cócteles</div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CONTACTO -->
+    <section class="landing-section" id="contacto">
+        <div class="section-title fade-up">
+            <h2>Encuéntranos</h2>
+            <p>Estamos listos para recibirte. ¡Ven y vive la experiencia Milano!</p>
+            <div class="section-divider"></div>
+        </div>
+        <div class="contact-grid fade-up">
+            <div class="contact-card">
+                <span class="contact-icon">📍</span>
+                <h4>Ubicación</h4>
+                <p>Calle Principal, Centro Ciudad<br>Frente al Malecón</p>
+            </div>
+            <div class="contact-card">
+                <span class="contact-icon">📞</span>
+                <h4>Teléfono</h4>
+                <p>+1 234 567 8900<br>+1 234 567 8901</p>
+            </div>
+            <div class="contact-card">
+                <span class="contact-icon">🕒</span>
+                <h4>Horario</h4>
+                <p>Lunes a Domingo<br>12:00 PM - 11:00 PM</p>
+            </div>
+            <div class="contact-card">
+                <span class="contact-icon">📧</span>
+                <h4>Correo</h4>
+                <p>info@restaurantemilano.com<br>reservas@milano.com</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA FINAL -->
+    <section class="landing-section" style="text-align:center; padding:60px 40px;">
+        <div class="fade-up">
+            <h2 style="font-size:2rem; color:var(--cream); margin-bottom:15px;">¿Listo para una experiencia inolvidable?</h2>
+            <p style="color:rgba(253,240,205,0.7); margin-bottom:30px; font-size:1.05rem;">Reserva tu mesa ahora o accede a tu cuenta para gestionar tus pedidos.</p>
+            <div class="hero-buttons">
+                <a href="login.html" class="hero-btn primary">Reservar Ahora</a>
+                <a href="login.html" class="hero-btn secondary">Acceso Empleados</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="landing-footer">
+        <div class="footer-brand">
+            <img src="imagenes/logo%20milano.png" alt="Logo Milano">
+            <span>Restaurante Milano</span>
+        </div>
+        <p class="footer-copy">© 2026 Restaurante Milano. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- WAVES (reutilizamos el estilo del sistema) -->
+    <div class="waves" style="z-index:0;">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 320">
+            <path fill="#49beaa" fill-opacity="0.15" d="M0,160L48,154.7C96,149,192,139,288,149.3C384,160,480,192,576,202.7C672,213,768,203,864,176C960,149,1056,107,1152,96C1248,85,1344,107,1392,117.3L1440,128L1440,320L1392,320C1344,320,1248,320,1152,320C1056,320,960,320,864,320C768,320,672,320,576,320C480,320,384,320,288,320C192,320,96,320,48,320L0,320Z"></path>
+        </svg>
+    </div>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', () => {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scroll for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const target = document.querySelector(link.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    // Close mobile nav
+                    document.querySelector('.nav-links').classList.remove('open');
+                }
+            });
+        });
+
+        // Scroll fade-in animations
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.15 });
+
+        document.querySelectorAll('.fade-up').forEach(el => observer.observe(el));
+    </script>
+
+</body>
+</html>
